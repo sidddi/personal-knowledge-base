@@ -12,7 +12,10 @@ Personal AI knowledge base — maintained with Claude Code following the Karpath
 | Entry | Status | Updated |
 |-------|--------|---------|
 | [AI Agents — Fundamentals](ai-agents.md) | stable | 2026-04-20 |
+| [Agent Architecture — Modes, Rules and Skills](agent-modes-rules-skills.md) | stable | 2026-04-20 |
 | [Multi-Agent Orchestration — Patterns](multi-agent-orchestration.md) | stable | 2026-05-06 |
+| [Skills in Claude Code (SKILL.md)](skills-claude-code.md) | stable | 2026-04-20 |
+| [Persistent Context Patterns Between LLM Sessions](persistent-context-patterns.md) | stable | 2026-04-20 |
 
 ---
 
