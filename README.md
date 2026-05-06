@@ -8,6 +8,20 @@ The idea: instead of re-deriving knowledge from scratch on every query (classic 
 
 ---
 
+## The core behaviour
+
+When you ask Claude a question, it doesn't just answer from its training data. It:
+
+1. Reads `wiki/index.md` to find relevant entries
+2. Reads those entries to load your accumulated knowledge into context
+3. Answers using **your wiki first**, then its own knowledge, then web search if needed
+
+This means every answer is grounded in *your* context, *your* projects, and *your* decisions — not generic internet knowledge. The wiki is the primary source of truth.
+
+The `CLAUDE.md` file is what makes this happen. It's the operating manual that tells Claude exactly how to use the vault on every session.
+
+---
+
 ## How it works
 
 1. Drop source material (articles, papers, threads, notes) into `raw/` as Markdown
@@ -15,15 +29,13 @@ The idea: instead of re-deriving knowledge from scratch on every query (classic 
 3. Claude extracts key concepts, creates or updates the relevant `wiki/` entry, cross-references related entries, and deletes the raw file
 4. Over time, you build a dense, opinionated, evergreen knowledge base that compounds
 
-The `CLAUDE.md` file is the operating manual — it tells Claude exactly how to structure the wiki, run ingestion, and manage session context.
-
 ---
 
 ## Structure
 
 ```
 personal-knowledge-base/
-├── CLAUDE.md          ← operating instructions for Claude
+├── CLAUDE.md          ← the operating manual — this is what makes it work
 ├── wiki/              ← the actual knowledge base (curated, evergreen)
 │   ├── index.md       ← navigation index
 │   ├── hot.md         ← session memory (restored at session start)
@@ -42,13 +54,19 @@ personal-knowledge-base/
 2. Install [Claude Code](https://claude.ai/code) and open the repo
 3. Edit `CLAUDE.md` to reflect your domain and interests
 4. Drop your first article into `raw/` and ask Claude to ingest it
-5. Ask questions — Claude will answer using your wiki as primary context
+5. Ask any question — Claude will answer using your wiki as primary context
+
+---
+
+## Session memory
+
+`wiki/hot.md` is a compact session summary written at the end of each session and read at the start of the next. You never rebuild context from scratch — Claude always knows where you left off.
 
 ---
 
 ## Demo vault
 
-The `demo_vault/` directory contains fictional example entries to show what a populated vault looks like. Open it in Obsidian to explore the structure before building your own.
+The `demo_vault/` directory contains fictional example entries to show what a populated vault looks like after a few weeks of use. Open it in Obsidian to explore the structure before building your own.
 
 ---
 
@@ -84,11 +102,14 @@ This repo ships with translated, anonymized versions of real wiki entries on:
 
 - [LLM Wiki Pattern (Karpathy)](wiki/llm-wiki-pattern.md)
 - [AI Agents](wiki/ai-agents.md)
+- [Agent Architecture — Modes, Rules and Skills](wiki/agent-modes-rules-skills.md)
+- [Skills in Claude Code (SKILL.md)](wiki/skills-claude-code.md)
+- [Persistent Context Patterns Between LLM Sessions](wiki/persistent-context-patterns.md)
+- [Multi-Agent Orchestration](wiki/multi-agent-orchestration.md)
 - [RAG (Retrieval-Augmented Generation)](wiki/rag.md)
 - [MCP (Model Context Protocol)](wiki/mcp.md)
 - [Evals (Agent Evaluation)](wiki/evals.md)
 - [Prompt Engineering](wiki/prompt-engineering.md)
-- [Multi-Agent Orchestration](wiki/multi-agent-orchestration.md)
 - [AI Governance in Public Sector](wiki/ai-governance-public-sector.md)
 
 ---
